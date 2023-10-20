@@ -1,0 +1,20 @@
+{
+  "__version__": "1.0.4",
+  "physics": {
+    "collisionGroups": [
+      {
+        "index": 1,
+        "name": "Enermy"
+      },
+      {
+        "index": 2,
+        "name": "Player"
+      }
+    ],
+    "collisionMatrix": {
+      "0": 7,
+      "1": 1,
+      "2": 1
+    }
+  }
+}
