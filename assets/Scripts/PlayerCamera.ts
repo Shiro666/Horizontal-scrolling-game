@@ -11,12 +11,19 @@ export class PlayerCamera extends Component {
 
     }
 
+    updatePosition = (pos: Vec3) => {
+        // x轴范围-120~120
+        // const x = Math.max(-120, Math.min(120, pos.x));
+        // this.node.position = new Vec3(x, Math.max(0, pos.y), 0);
+    }
+
     update(deltaTime: number) {
         const position = this.player.position;
         // x轴范围-120~120
         const x = Math.max(-120, Math.min(120, position.x));
         this.node.position = new Vec3(x, Math.max(0, position.y), position.z);
     }
+
 }
 
 

@@ -16,14 +16,7 @@ export class PlayerAttack extends Component {
         this.collider = this.node.getComponent(Collider2D);
     }
 
-    attack = (direction: 'left' | 'right') => {
-        if (direction === 'left') {
-            this.node.scale = new Vec3(1, 1, 1);
-            this.node.position = new Vec3(-40, 2, 0);
-        } else {
-            this.node.scale = new Vec3(-1, 1, 1);
-            this.node.position = new Vec3(40, 2, 0);
-        }
+    attack = () => {
         return new Promise((resolve) => {
             this.animCpmp.once(Animation.EventType.FINISHED, resolve)
             this.animCpmp.play('attack');

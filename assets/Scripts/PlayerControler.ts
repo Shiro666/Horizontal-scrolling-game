@@ -1,7 +1,11 @@
-import { _decorator, Collider2D, Component, Contact2DType, EventKeyboard, Input, input, IPhysics2DContact, KeyCode, RigidBody2D, Vec2 } from 'cc';
+import { _decorator, Collider2D, Component, Contact2DType, EPhysics2DDrawFlags, EventKeyboard, Input, input, IPhysics2DContact, KeyCode, PHYSICS_2D_PTM_RATIO, PhysicsSystem2D, RigidBody2D, Vec2, Vec3 } from 'cc';
 import { PlayerBody } from './PlayerBody';
 import { PlayerAttack } from './PlayerAttack';
+import { HorizontalDirection, PlayerAnimState } from './types';
+import { PlayerCamera } from './PlayerCamera';
 const { ccclass, property } = _decorator;
+
+/** 水平移动方向 */
 
 
 @ccclass('PlayerControler')
@@ -12,7 +16,7 @@ export class PlayerControler extends Component {
     private vx = 10;
 
     @property({
-        displayName: '跳跃高度'
+        displayName: '跳跃力'
     })
     private jumpHeight = 10;
 
@@ -22,10 +26,11 @@ export class PlayerControler extends Component {
     @property(PlayerAttack)
     private playerAttack: PlayerAttack = null;
 
+    @property(PlayerCamera)
+    private playerCamera: PlayerCamera = null;
+
     private rigidbody: RigidBody2D | null = null;
-    private isMovingLeft = false;
-    private isMovingRight = false;
-    private faceDirection: 'left' | 'right' = 'right';
+    private horizontalDir: HorizontalDirection = HorizontalDirection.STAND;
     private isJumping = false;
     private isAttacking = false;
 
@@ -60,19 +65,18 @@ export class PlayerControler extends Component {
 
     handleBeginContact = (selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) => {
         window.setTimeout(() => {
-            console.log(this.rigidbody.linearVelocity.y)
             // 判断是否落地，恢复跳跃功能
-            if (this.isJumping && Math.abs(this.rigidbody.linearVelocity.y) < Math.pow(10, -10)) {
-                this.isJumping = false;
-                this.handleMove();
+            console.log('begin contact', this.rigidbody.linearVelocity.y, otherCollider.tag);
+            if (this.playerBody.animState === PlayerAnimState.JUMP && Math.abs(this.rigidbody.linearVelocity.y) < Math.pow(10, -10)) {
+                this.playerBody.setAnimState(this.horizontalDir ? PlayerAnimState.WALK : PlayerAnimState.STAND, this.horizontalDir);
             }
-        }, 20);
+        }, 0);
     }
 
-    handleEndContact = () => {
-        
+    handleEndContact = (selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) => {
         // 撞墙后速度恢复
-        this.handleMove();
+        console.log('end contact', otherCollider.tag)
+        // this.playerBody.setAnimState(this.horizontalDir ? PlayerAnimState.WALK : PlayerAnimState.STAND, this.horizontalDir);
     }
 
     handleKeyDown = (event: EventKeyboard) => {
@@ -83,10 +87,8 @@ export class PlayerControler extends Component {
                     return;
                 }
                 this.isAttacking = true;
-                this.handleMove();
-                this.playerAttack.attack(this.faceDirection).then(() => {
+                this.playerAttack.attack().then(() => {
                     this.isAttacking = false;
-                    this.handleMove();
                 });
                 break;
             }
@@ -97,30 +99,35 @@ export class PlayerControler extends Component {
                 break;
             }
             case KeyCode.ARROW_LEFT: {
-                this.isMovingLeft = true;
-                this.handleMove();
+                this.horizontalDir = HorizontalDirection.LEFT;
+                if (this.playerBody.animState !== PlayerAnimState.JUMP) {
+                    this.playerBody.setAnimState(PlayerAnimState.WALK, this.horizontalDir);
+                } else {
+                    this.playerBody.toggleFace(this.horizontalDir);
+                }
                 break;
             }
             case KeyCode.ARROW_RIGHT: {
-                this.isMovingRight = true;
-                this.handleMove();
+                this.horizontalDir = HorizontalDirection.RIGHT;
+                if (this.playerBody.animState !== PlayerAnimState.JUMP) {
+                    this.playerBody.setAnimState(PlayerAnimState.WALK, this.horizontalDir);
+                } else {
+                    this.playerBody.toggleFace(this.horizontalDir);
+                }
                 break;
             }
             case KeyCode.SPACE: {
-                if (this.isJumping) {
+                if (this.playerBody.animState === PlayerAnimState.JUMP) {
                     return;
                 }
-                // 离地，锁定跳跃功能
-                this.isJumping = true;
-                this.rigidbody.linearVelocity = new Vec2(this.rigidbody.linearVelocity.x, this.jumpHeight);
-                this.playerBody.idle();
+                this.playerBody.setAnimState(PlayerAnimState.JUMP);
+                this.rigidbody.applyForceToCenter(new Vec2(0, this.jumpHeight), true);
                 break;
             }
         }
     }
 
     handleKeyUp = (event: EventKeyboard) => {
-
         switch (event.keyCode) {
             case KeyCode.ARROW_UP: {
                 break;
@@ -129,42 +136,41 @@ export class PlayerControler extends Component {
                 break;
             }
             case KeyCode.ARROW_LEFT: {
-                this.isMovingLeft = false;
-                this.handleMove();
+                if (this.horizontalDir === HorizontalDirection.LEFT) {
+                    this.horizontalDir = HorizontalDirection.STAND;
+                    this.playerBody.animState !== PlayerAnimState.JUMP && this.playerBody.setAnimState(PlayerAnimState.STAND);
+                }
                 break;
             }
             case KeyCode.ARROW_RIGHT: {
-                this.isMovingRight = false;
-                this.handleMove();
+                if (this.horizontalDir === HorizontalDirection.RIGHT) {
+                    this.horizontalDir = HorizontalDirection.STAND;
+                    this.playerBody.animState !== PlayerAnimState.JUMP && this.playerBody.setAnimState(PlayerAnimState.STAND);
+                }
                 break;
             }
         }
     }
 
-    handleMove = () => {
-        // 向左移动
-        if (this.isMovingLeft && !this.isMovingRight && !this.isAttacking) {
-            !this.isJumping && this.playerBody.walkLeft();
-            this.rigidbody.linearVelocity = new Vec2(-1 * this.vx, this.rigidbody.linearVelocity.y);
+    handleMove = (dt: number) => {
+        if (this.playerBody.animState !== PlayerAnimState.JUMP) {
+            this.rigidbody.linearVelocity = new Vec2(this.vx * this.horizontalDir, this.rigidbody.linearVelocity.y);
+        } else {
+            this.rigidbody.linearVelocity = new Vec2(this.vx * this.horizontalDir, this.rigidbody.linearVelocity.y);
         }
-        // 向右移动
-        if (!this.isMovingLeft && this.isMovingRight && !this.isAttacking) {
-            !this.isJumping && this.playerBody.walkRight();
-            this.rigidbody.linearVelocity = new Vec2(this.vx, this.rigidbody.linearVelocity.y);
-        }
-        // 停止移动
-        if (!this.isMovingLeft && !this.isMovingRight || this.isAttacking) {
-            this.playerBody.idle();
-            this.rigidbody.linearVelocity = new Vec2(0, this.rigidbody.linearVelocity.y);
-        }
+        // this.node.position = new Vec3(this.node.position.x + this.vx * this.horizontalDir * dt, this.node.position.y, 0);
     }
 
     protected update(dt: number): void {
-        if (this.rigidbody.linearVelocity.x > 0) {
-            this.faceDirection = 'right';
-        } else if (this.rigidbody.linearVelocity.x < 0) {
-            this.faceDirection = 'left';
-        }
+        
+
+        this.handleMove(dt);
+        this.playerCamera.updatePosition(this.node.position);
+    }
+
+    protected lateUpdate(dt: number): void {
+        
+        
     }
 }
 
