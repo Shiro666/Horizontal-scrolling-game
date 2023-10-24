@@ -2,7 +2,6 @@ import { _decorator, Collider2D, Component, Contact2DType, EPhysics2DDrawFlags, 
 import { PlayerBody } from './PlayerBody';
 import { PlayerAttack } from './PlayerAttack';
 import { HorizontalDirection, PlayerAnimState } from './types';
-import { PlayerCamera } from './PlayerCamera';
 const { ccclass, property } = _decorator;
 
 /** 水平移动方向 */
@@ -25,9 +24,6 @@ export class PlayerControler extends Component {
 
     @property(PlayerAttack)
     private playerAttack: PlayerAttack = null;
-
-    @property(PlayerCamera)
-    private playerCamera: PlayerCamera = null;
 
     private rigidbody: RigidBody2D | null = null;
     private horizontalDir: HorizontalDirection = HorizontalDirection.STAND;
@@ -121,6 +117,7 @@ export class PlayerControler extends Component {
                     return;
                 }
                 this.playerBody.setAnimState(PlayerAnimState.JUMP);
+                this.rigidbody.linearVelocity = new Vec2(this.rigidbody.linearVelocity.x, 0);
                 this.rigidbody.applyForceToCenter(new Vec2(0, this.jumpHeight), true);
                 break;
             }
@@ -158,19 +155,10 @@ export class PlayerControler extends Component {
         } else {
             this.rigidbody.linearVelocity = new Vec2(this.vx * this.horizontalDir, this.rigidbody.linearVelocity.y);
         }
-        // this.node.position = new Vec3(this.node.position.x + this.vx * this.horizontalDir * dt, this.node.position.y, 0);
     }
 
     protected update(dt: number): void {
-        
-
         this.handleMove(dt);
-        this.playerCamera.updatePosition(this.node.position);
-    }
-
-    protected lateUpdate(dt: number): void {
-        
-        
     }
 }
 

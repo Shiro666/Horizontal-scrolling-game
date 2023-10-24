@@ -35,7 +35,7 @@ export class Platform extends Component {
             else if (relativeVel.y < 1 * PHYSICS_2D_PTM_RATIO) {
                 // 边缘情况，轻微碰撞
                 platformBody.getLocalPoint(points[i], relativePoint);
-                // 计算平台前面，只能用于box collider
+                // 计算平台前面
                 const platformFaceY = selfCollider.worldAABB.height / 2;
                 if (relativePoint.y + 0.1 * PHYSICS_2D_PTM_RATIO > platformFaceY ) {
                     //contact point is less than 3.2pixel (10cm) inside front face of platfrom
