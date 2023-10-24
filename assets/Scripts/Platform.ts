@@ -14,42 +14,42 @@ export class Platform extends Component {
     }
 
     onPreSolve (selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact) {
-        const otherBody = otherCollider.body as RigidBody2D;
-        const platformBody = selfCollider.body as RigidBody2D;
+        // const otherBody = otherCollider.body as RigidBody2D;
+        // const platformBody = selfCollider.body as RigidBody2D;
 
-        const worldManifold = contact.getWorldManifold();
-        const points = worldManifold.points;
+        // const worldManifold = contact.getWorldManifold();
+        // const points = worldManifold.points;
 
-        //check if contact points are moving into platform
-        for (let i = 0; i < points.length; i++) {
-            platformBody.getLinearVelocityFromWorldPoint(points[i], pointVelPlatform);
-            otherBody.getLinearVelocityFromWorldPoint(points[i], pointVelOther);
-            platformBody.getLocalVector(pointVelOther.subtract(pointVelPlatform), relativeVel);
+        // //check if contact points are moving into platform
+        // for (let i = 0; i < points.length; i++) {
+        //     platformBody.getLinearVelocityFromWorldPoint(points[i], pointVelPlatform);
+        //     otherBody.getLinearVelocityFromWorldPoint(points[i], pointVelOther);
+        //     platformBody.getLocalVector(pointVelOther.subtract(pointVelPlatform), relativeVel);
             
-            // 相对速度向下，大于1m/s
-            if (relativeVel.y < -1 * PHYSICS_2D_PTM_RATIO) {
-                // 保持接触
-                return;
-            }
-            // 相对速度小于1m/s
-            else if (relativeVel.y < 1 * PHYSICS_2D_PTM_RATIO) {
-                // 边缘情况，轻微碰撞
-                platformBody.getLocalPoint(points[i], relativePoint);
-                // 计算平台前面
-                const platformFaceY = selfCollider.worldAABB.height / 2;
-                if (relativePoint.y + 0.1 * PHYSICS_2D_PTM_RATIO > platformFaceY ) {
-                    //contact point is less than 3.2pixel (10cm) inside front face of platfrom
-                    return;
-                }
-            }
-            // 相对速度向上，大于1m/s
-            else {
+        //     // 相对速度向下，大于1m/s
+        //     if (relativeVel.y < -1 * PHYSICS_2D_PTM_RATIO) {
+        //         // 保持接触
+        //         return;
+        //     }
+        //     // 相对速度小于1m/s
+        //     else if (relativeVel.y < 1 * PHYSICS_2D_PTM_RATIO) {
+        //         // 边缘情况，轻微碰撞
+        //         platformBody.getLocalPoint(points[i], relativePoint);
+        //         // 计算平台前面
+        //         const platformFaceY = selfCollider.worldAABB.height / 2;
+        //         if (relativePoint.y + 0.1 * PHYSICS_2D_PTM_RATIO > platformFaceY ) {
+        //             //contact point is less than 3.2pixel (10cm) inside front face of platfrom
+        //             return;
+        //         }
+        //     }
+        //     // 相对速度向上，大于1m/s
+        //     else {
                 
-            }
-        }
+        //     }
+        // }
 
-        // 取消本次接触
-        contact.disabled = true;
+        // // 取消本次接触
+        // contact.disabled = true;
     }
 }
 
