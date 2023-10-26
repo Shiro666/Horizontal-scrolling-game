@@ -9,5 +9,19 @@ export enum HorizontalDirection {
 export enum PlayerAnimState {
     STAND,
     WALK,
-    JUMP
+    JUMP,
+    ATTACK
+}
+
+export enum ColliderTag {
+    PLAYER = 0,
+    PLAYER_ATKBOX = 0.1,
+    GROUND = 1,
+    WALL = 1.2,
+    ENERMY = 2
+}
+
+export enum SkillType {
+    NONE = 0,
+    A = 1,
 }

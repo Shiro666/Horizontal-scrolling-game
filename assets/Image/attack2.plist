@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>1.png</key>
+            <key>5.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -19,7 +19,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>2.png</key>
+            <key>6.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -34,7 +34,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>3.png</key>
+            <key>7.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -49,7 +49,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>4.png</key>
+            <key>8.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -74,13 +74,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>attack.png</string>
+            <string>attack2.png</string>
             <key>size</key>
             <string>{192,48}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:fddd0e6333756e40c64e90326ebb9e35:e5a46589248384f54d3766da9bd5866f:856f6152432936647e7bca42c85187ec$</string>
+            <string>$TexturePacker:SmartUpdate:7abb97ae70bcc384fdaf076b32e3df32:77177cd59a81a3e2a76b285a0a04d911:66fd7a6e3aa425dbf057b24948392f2e$</string>
             <key>textureFileName</key>
-            <string>attack.png</string>
+            <string>attack2.png</string>
         </dict>
     </dict>
 </plist>

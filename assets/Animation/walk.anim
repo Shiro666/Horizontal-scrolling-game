@@ -16,6 +16,9 @@
     "_tracks": [
       {
         "__id__": 1
+      },
+      {
+        "__id__": 6
       }
     ],
     "_exoticAnimation": null,
@@ -64,21 +67,62 @@
     ],
     "_values": [
       {
-        "__uuid__": "43c04227-ed57-4863-8d7c-e8d01a050002@0a0bc",
+        "__uuid__": "367066e6-d2cd-4e69-9daa-ec531dd39141@6466a",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "43c04227-ed57-4863-8d7c-e8d01a050002@0edc2",
+        "__uuid__": "367066e6-d2cd-4e69-9daa-ec531dd39141@7df54",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "43c04227-ed57-4863-8d7c-e8d01a050002@ebce4",
+        "__uuid__": "367066e6-d2cd-4e69-9daa-ec531dd39141@aa71d",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "43c04227-ed57-4863-8d7c-e8d01a050002@4fced",
+        "__uuid__": "367066e6-d2cd-4e69-9daa-ec531dd39141@18eee",
         "__expectedType__": "cc.SpriteFrame"
       }
+    ]
+  },
+  {
+    "__type__": "cc.animation.ObjectTrack",
+    "_binding": {
+      "__type__": "cc.animation.TrackBinding",
+      "path": {
+        "__id__": 7
+      },
+      "proxy": null
+    },
+    "_channel": {
+      "__id__": 9
+    }
+  },
+  {
+    "__type__": "cc.animation.TrackPath",
+    "_paths": [
+      {
+        "__id__": 8
+      },
+      "active"
+    ]
+  },
+  {
+    "__type__": "cc.animation.HierarchyPath",
+    "path": "AtkBox"
+  },
+  {
+    "__type__": "cc.animation.Channel",
+    "_curve": {
+      "__id__": 10
+    }
+  },
+  {
+    "__type__": "cc.ObjectCurve",
+    "_times": [
+      0
+    ],
+    "_values": [
+      false
     ]
   }
 ]

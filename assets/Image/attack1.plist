@@ -4,63 +4,63 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>xiana1.png</key>
+            <key>1.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{32,48}</string>
+                <string>{48,48}</string>
                 <key>spriteSourceSize</key>
-                <string>{32,48}</string>
+                <string>{48,48}</string>
                 <key>textureRect</key>
-                <string>{{0,0},{32,48}}</string>
+                <string>{{0,0},{48,48}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>xiana2.png</key>
+            <key>2.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{32,48}</string>
+                <string>{48,48}</string>
                 <key>spriteSourceSize</key>
-                <string>{32,48}</string>
+                <string>{48,48}</string>
                 <key>textureRect</key>
-                <string>{{0,48},{32,48}}</string>
+                <string>{{48,0},{48,48}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>xiana3.png</key>
+            <key>3.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{32,48}</string>
+                <string>{48,48}</string>
                 <key>spriteSourceSize</key>
-                <string>{32,48}</string>
+                <string>{48,48}</string>
                 <key>textureRect</key>
-                <string>{{0,96},{32,48}}</string>
+                <string>{{96,0},{48,48}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>xiana4.png</key>
+            <key>4.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{32,48}</string>
+                <string>{48,48}</string>
                 <key>spriteSourceSize</key>
-                <string>{32,48}</string>
+                <string>{48,48}</string>
                 <key>textureRect</key>
-                <string>{{0,144},{32,48}}</string>
+                <string>{{144,0},{48,48}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -74,13 +74,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>xiana.png</string>
+            <string>attack1.png</string>
             <key>size</key>
-            <string>{32,192}</string>
+            <string>{192,48}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:7cc54019e381263434b26c93a64e09aa:c6a447cf4237eded72317f2db1367b09:071dfdcb2b79e43db3456e9c05328c65$</string>
+            <string>$TexturePacker:SmartUpdate:6892d47b94c0acc3a449b469f3e03dd5:2477cbe5f870ef659dac54526199a0f8:7687a55f8ea4ae98c40ca9c52a3de62e$</string>
             <key>textureFileName</key>
-            <string>xiana.png</string>
+            <string>attack1.png</string>
         </dict>
     </dict>
 </plist>

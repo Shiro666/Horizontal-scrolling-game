@@ -20,7 +20,15 @@ export class DamageNum extends Component {
                 onComplete: endCb
             }
         );
-        const t2 = tween(this.node.position).to(1, new Vec3(0, 80, 0));
+        const t2 = tween(this.node.position).to(
+            1,
+            new Vec3(0, 80, 0),
+            {
+                onUpdate: (target: Vec3) => {
+                    this.node.position = target;
+                }
+            }
+        );
         t1.start();
         t2.start();
     }
