@@ -76,6 +76,10 @@ export class PlayerBody extends Component {
         this.audioComp.playOneShot(this.audioComp.clip, 0.5);
     }
 
+    public updateHurtRatio = (ratio: number) => {
+        this.atkBox.hurtRatio = ratio;
+    }
+
     update(deltaTime: number) {
         
     }

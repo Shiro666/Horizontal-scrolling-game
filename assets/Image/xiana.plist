@@ -4,6 +4,96 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>xiana-atk2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{80,60}</string>
+                <key>spriteSourceSize</key>
+                <string>{80,60}</string>
+                <key>textureRect</key>
+                <string>{{0,0},{80,60}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>xiana-atk3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{80,60}</string>
+                <key>spriteSourceSize</key>
+                <string>{80,60}</string>
+                <key>textureRect</key>
+                <string>{{80,0},{80,60}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>xiana-atk4.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{80,60}</string>
+                <key>spriteSourceSize</key>
+                <string>{80,60}</string>
+                <key>textureRect</key>
+                <string>{{160,0},{80,60}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>xiana-atk5.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{80,60}</string>
+                <key>spriteSourceSize</key>
+                <string>{80,60}</string>
+                <key>textureRect</key>
+                <string>{{240,0},{80,60}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>xiana-atk6.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{80,60}</string>
+                <key>spriteSourceSize</key>
+                <string>{80,60}</string>
+                <key>textureRect</key>
+                <string>{{320,0},{80,60}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>xiana-atk7.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{80,60}</string>
+                <key>spriteSourceSize</key>
+                <string>{80,60}</string>
+                <key>textureRect</key>
+                <string>{{400,0},{80,60}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
             <key>xiana1.png</key>
             <dict>
                 <key>aliases</key>
@@ -11,11 +101,11 @@
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{32,48}</string>
+                <string>{80,60}</string>
                 <key>spriteSourceSize</key>
-                <string>{32,48}</string>
+                <string>{80,60}</string>
                 <key>textureRect</key>
-                <string>{{0,0},{32,48}}</string>
+                <string>{{480,0},{80,60}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -26,11 +116,11 @@
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{32,48}</string>
+                <string>{80,60}</string>
                 <key>spriteSourceSize</key>
-                <string>{32,48}</string>
+                <string>{80,60}</string>
                 <key>textureRect</key>
-                <string>{{0,48},{32,48}}</string>
+                <string>{{560,0},{80,60}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -41,11 +131,11 @@
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{32,48}</string>
+                <string>{80,60}</string>
                 <key>spriteSourceSize</key>
-                <string>{32,48}</string>
+                <string>{80,60}</string>
                 <key>textureRect</key>
-                <string>{{0,96},{32,48}}</string>
+                <string>{{640,0},{80,60}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -56,11 +146,11 @@
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{32,48}</string>
+                <string>{80,60}</string>
                 <key>spriteSourceSize</key>
-                <string>{32,48}</string>
+                <string>{80,60}</string>
                 <key>textureRect</key>
-                <string>{{0,144},{32,48}}</string>
+                <string>{{720,0},{80,60}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -76,9 +166,9 @@
             <key>realTextureFileName</key>
             <string>xiana.png</string>
             <key>size</key>
-            <string>{32,192}</string>
+            <string>{800,60}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:7cc54019e381263434b26c93a64e09aa:c6a447cf4237eded72317f2db1367b09:071dfdcb2b79e43db3456e9c05328c65$</string>
+            <string>$TexturePacker:SmartUpdate:842bad50cb1dd1349f73704a105d4181:75bfb44c0a1ecc9e81c4edf1ba6b2cf3:071dfdcb2b79e43db3456e9c05328c65$</string>
             <key>textureFileName</key>
             <string>xiana.png</string>
         </dict>

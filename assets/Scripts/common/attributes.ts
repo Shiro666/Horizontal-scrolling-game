@@ -11,8 +11,8 @@ export class Attributes {
         ATK?: number;
         DEF?: number;
     }) {
-        this.HP = options?.HP || 10;
-        this.ATK = options?.ATK || 1;
+        this.HP = options?.HP || 100;
+        this.ATK = options?.ATK || 10;
         this.DEF = options?.DEF || 0;
     }
 }
