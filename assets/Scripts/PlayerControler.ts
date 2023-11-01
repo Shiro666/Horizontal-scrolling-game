@@ -1,8 +1,9 @@
-import { _decorator, Collider2D, Component, Contact2DType, EventKeyboard, game, Input, input, KeyCode, PHYSICS_2D_PTM_RATIO, PhysicsSystem2D, Vec2, Vec3 } from 'cc';
+import { _decorator, Collider2D, Component, Contact2DType, EventKeyboard, find, game, Input, input, KeyCode, PHYSICS_2D_PTM_RATIO, PhysicsSystem2D, Vec2, Vec3 } from 'cc';
 import { PlayerBody } from './PlayerBody';
 import { ColliderTag, HorizontalDirection, PlayerAnimState } from './types';
+import { Gate } from './Gate';
+import { GameManager } from './GameManager';
 const { ccclass, property } = _decorator;
-
 
 let position: Vec3 = new Vec3(0, 0, 0);
 
@@ -17,13 +18,18 @@ export class PlayerControler extends Component {
     private playerBody: PlayerBody = null;
 
     private horizontalDir: HorizontalDirection = HorizontalDirection.STAND;
-    private isAttacking = false;
     private collider: Collider2D = null;
 
     /** 跳跃相关变量 */
     private isFall = false;
     private upSpeed = 0;
     private gravity = 30;
+
+    /** 传送门信息 */
+    private gateInfo = {
+        nextSceneName: '',
+        nextPosition: new Vec3(0, 0, 0)
+    }
 
     protected onDestroy(): void {
         this.removeListener();
@@ -50,6 +56,14 @@ export class PlayerControler extends Component {
     }
 
     handleBeginContact = (selfCollider: Collider2D, otherCollider: Collider2D) => {
+        if (otherCollider.tag === ColliderTag.GATE) {
+            const gate = otherCollider.node.getComponent(Gate)
+            this.gateInfo = {
+                nextSceneName: gate.sceneName,
+                nextPosition: gate.nextPosition
+            }
+            return;
+        }
         // 下落中接触地面
         if (this.playerBody.animState === PlayerAnimState.JUMP && this.isFall && otherCollider.tag === ColliderTag.GROUND) {
             otherCollider.node.getWorldPosition(position);
@@ -65,6 +79,13 @@ export class PlayerControler extends Component {
     }
 
     handleEndContact = (selfCollider: Collider2D, otherCollider: Collider2D) => {
+        if (otherCollider.tag === ColliderTag.GATE) {
+            this.gateInfo = {
+                nextSceneName: '',
+                nextPosition: new Vec3(0, 0, 0)
+            };
+            return;
+        }
         // 离开平台后自然下落
         if (this.playerBody.animState !== PlayerAnimState.JUMP && !this.isFall && !this.checkIsGround() && otherCollider.tag === ColliderTag.GROUND) {
             this.playerBody.setAnimState(PlayerAnimState.JUMP);
@@ -84,6 +105,10 @@ export class PlayerControler extends Component {
                 break;
             }
             case KeyCode.ARROW_UP: {
+                if (this.gateInfo.nextSceneName) {
+                    const gameManager = find('GameManager').getComponent(GameManager);
+                    gameManager.handleSceneChange(this.gateInfo.nextSceneName, this.gateInfo.nextPosition);
+                }
                 break;
             }
             case KeyCode.ARROW_DOWN: {

@@ -18,7 +18,8 @@ export enum ColliderTag {
     PLAYER_ATKBOX = 0.1,
     GROUND = 1,
     WALL = 1.2,
-    ENERMY = 2
+    ENERMY = 2,
+    GATE = 3,
 }
 
 export enum SkillType {

@@ -1,0 +1,169 @@
+[
+  {
+    "__type__": "cc.AnimationClip",
+    "_name": "gate",
+    "_objFlags": 0,
+    "__editorExtras__": {
+      "embeddedPlayerGroups": []
+    },
+    "_native": "",
+    "sample": 20,
+    "speed": 1,
+    "wrapMode": 2,
+    "enableTrsBlending": false,
+    "_duration": 1.05,
+    "_hash": 500763545,
+    "_tracks": [
+      {
+        "__id__": 1
+      }
+    ],
+    "_exoticAnimation": null,
+    "_events": [],
+    "_embeddedPlayers": []
+  },
+  {
+    "__type__": "cc.animation.ObjectTrack",
+    "_binding": {
+      "__type__": "cc.animation.TrackBinding",
+      "path": {
+        "__id__": 2
+      },
+      "proxy": null
+    },
+    "_channel": {
+      "__id__": 4
+    }
+  },
+  {
+    "__type__": "cc.animation.TrackPath",
+    "_paths": [
+      {
+        "__id__": 3
+      },
+      "spriteFrame"
+    ]
+  },
+  {
+    "__type__": "cc.animation.ComponentPath",
+    "component": "cc.Sprite"
+  },
+  {
+    "__type__": "cc.animation.Channel",
+    "_curve": {
+      "__id__": 5
+    }
+  },
+  {
+    "__type__": "cc.ObjectCurve",
+    "_times": [
+      0,
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95,
+      1
+    ],
+    "_values": [
+      {
+        "__uuid__": "ae9a997c-6468-479d-90f1-169547aae7d3@67ceb",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ae9a997c-6468-479d-90f1-169547aae7d3@444ae",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ae9a997c-6468-479d-90f1-169547aae7d3@0279a",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ae9a997c-6468-479d-90f1-169547aae7d3@14252",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ae9a997c-6468-479d-90f1-169547aae7d3@d25ee",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ae9a997c-6468-479d-90f1-169547aae7d3@1b3ad",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ae9a997c-6468-479d-90f1-169547aae7d3@f4cb5",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ae9a997c-6468-479d-90f1-169547aae7d3@418c8",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ae9a997c-6468-479d-90f1-169547aae7d3@87063",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ae9a997c-6468-479d-90f1-169547aae7d3@d295c",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ae9a997c-6468-479d-90f1-169547aae7d3@4270f",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ae9a997c-6468-479d-90f1-169547aae7d3@26f97",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ae9a997c-6468-479d-90f1-169547aae7d3@12503",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ae9a997c-6468-479d-90f1-169547aae7d3@7c631",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ae9a997c-6468-479d-90f1-169547aae7d3@548e9",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ae9a997c-6468-479d-90f1-169547aae7d3@3ca67",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ae9a997c-6468-479d-90f1-169547aae7d3@b4840",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ae9a997c-6468-479d-90f1-169547aae7d3@d3136",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ae9a997c-6468-479d-90f1-169547aae7d3@76920",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ae9a997c-6468-479d-90f1-169547aae7d3@9e2ca",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ae9a997c-6468-479d-90f1-169547aae7d3@6c289",
+        "__expectedType__": "cc.SpriteFrame"
+      }
+    ]
+  }
+]
