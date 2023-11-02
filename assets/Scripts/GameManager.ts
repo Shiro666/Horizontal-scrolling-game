@@ -7,6 +7,9 @@ export class GameManager extends Component {
     @property(Prefab)
     private playerManagerPrefab: Prefab = null;
 
+    @property(Prefab)
+    private slimPrefab: Prefab = null;
+
     private playerManager: Node = null;
 
     protected onLoad(): void {
@@ -14,7 +17,9 @@ export class GameManager extends Component {
     }
     start() {
         game.frameRate = 60;
+        console.log('game manager start')
         this.initPlayer();
+        this.initSlim();
     }
 
     private initPlayer = (position?: Vec3) => {
@@ -25,9 +30,21 @@ export class GameManager extends Component {
         player.position = position ? position: new Vec3(0, -221, 0);
     }
 
+    private initSlim = () => {
+        console.log('init slim');
+        const slim = instantiate(this.slimPrefab);
+        const canvas = find('Canvas');
+        canvas.addChild(slim);
+    }
+
     public handleSceneChange = (sceneName: string, position: Vec3) => {
         this.playerManager.destroy();
-        director.loadScene(sceneName, this.initPlayer.bind(this, position));
+        director.loadScene(sceneName, () => {
+            this.initPlayer(position);
+            if (sceneName === 'game-main'){
+                this.initSlim();
+            }
+        });
     }
 
     update(deltaTime: number) {

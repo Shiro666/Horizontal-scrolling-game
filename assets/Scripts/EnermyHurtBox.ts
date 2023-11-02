@@ -1,9 +1,11 @@
-import { _decorator, Animation, Collider2D, Component, Contact2DType, instantiate, Node, Prefab, Vec3 } from 'cc';
+import { _decorator, Animation, CCInteger, Collider2D, Component, Contact2DType, instantiate, Material, Node, Prefab, Sprite, Vec3 } from 'cc';
 import { DamageNum } from './DamageNum';
 import { ColliderTag } from './types';
 import { PlayerAtkBox } from './PlayerAtkBox';
 import playerAttr from './common/playerAttr';
 const { ccclass, property } = _decorator;
+
+let timer = 0;
 
 @ccclass('EnermyHurtBox')
 export class EnermyHurtBox extends Component {
@@ -14,9 +16,19 @@ export class EnermyHurtBox extends Component {
     @property(Prefab)
     damagePrefab: Prefab = null;
 
+    @property(Material)
+    flashMaterial: Material = null;
+
+    @property(CCInteger)
+    height: number = 0;
+
+    private oldMaterial: Material = null;
+
     start() {
         const collider = this.node.getComponent(Collider2D);
         collider.on(Contact2DType.BEGIN_CONTACT, this.handleBeginContact);
+        const sprite = this.body.getComponent(Sprite);
+        this.oldMaterial = sprite.getMaterial(0);
     }
 
     handleBeginContact = (selfCollider: Collider2D, otherCollider: Collider2D) => {
@@ -29,12 +41,18 @@ export class EnermyHurtBox extends Component {
         const hurt = this.calcHurt(player.hurtRatio, isCritical);
 
         // 闪烁特效
-        const animCpmp = this.body.getComponent(Animation);
-        animCpmp.play('enermy-flash');
+        const sprite = this.body.getComponent(Sprite);
+        sprite.setMaterial(this.flashMaterial, 0);
+        timer && clearTimeout(timer);
+        timer = window.setTimeout(() => {
+            sprite.setMaterial(this.oldMaterial, 0);
+            clearTimeout(timer);
+        }, 100);
+
         // 伤害数字
         const damageNode = instantiate(this.damagePrefab);
-        this.node.addChild(damageNode);
-        damageNode.position = new Vec3(0, 40, 0);
+        this.body.parent.addChild(damageNode);
+        damageNode.position = new Vec3(0, this.height, 0);
         const damageNum = damageNode.getComponent(DamageNum);
         damageNum.showDamageNum(hurt, {
             isCritical: isCritical,
