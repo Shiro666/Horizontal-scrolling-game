@@ -1,5 +1,6 @@
 import { _decorator, Component, director, find, game, instantiate, Node, NodeEventType, Prefab, Vec3 } from 'cc';
 import { PlayerControler } from './PlayerControler';
+import { Enermy } from './Enermy';
 const { ccclass, property } = _decorator;
 
 @ccclass('GameManager')
@@ -12,14 +13,16 @@ export class GameManager extends Component {
 
     private playerManager: Node = null;
 
+    private enermyList: Node[] = [];
+
     protected onLoad(): void {
         director.addPersistRootNode(this.node);
     }
     start() {
         game.frameRate = 60;
         console.log('game manager start')
-        this.initPlayer();
         this.initSlim();
+        this.initPlayer();
     }
 
     private initPlayer = (position?: Vec3) => {
@@ -28,6 +31,14 @@ export class GameManager extends Component {
         canvas.addChild(this.playerManager);
         const player = find('Player', this.playerManager);
         player.position = position ? position: new Vec3(0, -221, 0);
+        this.enermyBindPlayer();
+    }
+
+    enermyBindPlayer = () => {
+        this.enermyList.forEach((item) => {
+            const enermy = item.getComponent(Enermy);
+            enermy.setPlayer(find('Player', this.playerManager));
+        })
     }
 
     private initSlim = () => {
@@ -35,15 +46,16 @@ export class GameManager extends Component {
         const slim = instantiate(this.slimPrefab);
         const canvas = find('Canvas');
         canvas.addChild(slim);
+        this.enermyList.push(slim);
     }
 
     public handleSceneChange = (sceneName: string, position: Vec3) => {
         this.playerManager.destroy();
         director.loadScene(sceneName, () => {
-            this.initPlayer(position);
             if (sceneName === 'game-main'){
                 this.initSlim();
             }
+            this.initPlayer(position);
         });
     }
 

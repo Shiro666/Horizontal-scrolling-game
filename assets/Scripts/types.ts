@@ -19,6 +19,7 @@ export enum ColliderTag {
     GROUND = 1,
     WALL = 1.2,
     ENERMY = 2,
+    ENERMY_ATKBOX = 2.1,
     GATE = 3,
 }
 

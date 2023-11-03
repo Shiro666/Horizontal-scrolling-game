@@ -2,12 +2,12 @@
   "ver": "2.0.3",
   "importer": "animation-clip",
   "imported": true,
-  "uuid": "fbe56e3a-4cf9-4b18-8648-d6e6f4d14bc6",
+  "uuid": "5d5ae0a7-03d4-495b-97cf-6d5ea042531f",
   "files": [
     ".cconb"
   ],
   "subMetas": {},
   "userData": {
-    "name": "enermy-flash"
+    "name": "slim_attack"
   }
 }
