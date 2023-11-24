@@ -2,7 +2,7 @@
   "ver": "1.6.2",
   "importer": "effect",
   "imported": true,
-  "uuid": "5fe97a45-0e2e-4fd1-9b0f-d6cfc8ebab03",
+  "uuid": "4ff485b8-c330-44db-8b66-7f1799515d76",
   "files": [
     ".json"
   ],
@@ -10,14 +10,13 @@
   "userData": {
     "combinations": [
       {
-        "USE_INSTANCING": [
+        "USE_LOCAL": [
           true
         ],
-        "HAS_SECOND_UV": [
+        "USE_TEXTURE": [
           true
         ]
-      },
-      {}
+      }
     ]
   }
 }
